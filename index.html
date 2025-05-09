@@ -3,65 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <title>Shonapakhi GPT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(to right, #f8bbd0, #f48fb1);
-      text-align: center;
-      padding: 40px;
-      color: #880e4f;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #1f1f1f;
+      color: #f8bbd0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
     }
 
     h1 {
-      font-size: 3.5em;
-      margin-bottom: 10px;
-      color: #880e4f;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      font-size: 2.5rem;
+      margin-top: 20px;
+      color: #ff80ab;
     }
 
-    input, button {
-      padding: 12px 20px;
-      font-size: 18px;
-      margin: 10px;
-      border-radius: 10px;
-      border: 2px solid #f06292;
+    .chat-container {
+      background-color: #2c2c2c;
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+      height: 70vh;
+      overflow-y: auto;
+      box-shadow: 0 0 20px #ff80ab44;
+    }
+
+    .message {
+      background-color: #ff80ab22;
+      border: 1px solid #ff80ab55;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    .input-container {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 16px;
+      background-color: #333;
+      color: #fff;
     }
 
     button {
-      background-color: #f06292;
+      padding: 12px 20px;
+      border: none;
+      background-color: #ff4081;
       color: white;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
+      border-radius: 0 8px 8px 0;
+      transition: background 0.3s;
     }
 
     button:hover {
-      background-color: #e91e63;
-    }
-
-    .response {
-      margin-top: 20px;
-      font-size: 22px;
-      color: #ad1457;
-      font-weight: bold;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    p {
-      font-size: 1.5em;
-      color: #880e4f;
-      font-weight: bold;
+      background-color: #f50057;
     }
   </style>
 </head>
 <body>
 
   <h1>Shonapakhi GPT</h1>
-  <p>Ask anything, and I’ll tell you why your Shonapakhi is the most amazing!</p>
+  <div class="chat-container" id="chatBox"></div>
 
-  <input id="userInput" placeholder="Ask me anything..." />
-  <button onclick="respond()">Send</button>
-
-  <div class="response" id="responseText"></div>
+  <div class="input-container">
+    <input id="userInput" placeholder="Say something..." />
+    <button onclick="respond()">Send</button>
+  </div>
 
   <script>
     const compliments = [
@@ -73,11 +96,31 @@
       "She’s not just perfect—she’s your perfect.",
       "With Shonapakhi, even silence feels full of love.",
       "She’s your favorite hello and your hardest goodbye.",
+      "Shonapakhi brings magic to your every moment."
     ];
 
     function respond() {
-      const response = compliments[Math.floor(Math.random() * compliments.length)];
-      document.getElementById('responseText').innerText = response;
+      const input = document.getElementById('userInput').value;
+      if (!input) return;
+
+      const chatBox = document.getElementById('chatBox');
+
+      // User message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message';
+      userMsg.style.backgroundColor = '#4a4a4a';
+      userMsg.innerText = input;
+      chatBox.appendChild(userMsg);
+
+      // GPT compliment
+      const gptMsg = document.createElement('div');
+      gptMsg.className = 'message';
+      gptMsg.innerText = compliments[Math.floor(Math.random() * compliments.length)];
+      chatBox.appendChild(gptMsg);
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      document.getElementById('userInput').value = '';
     }
   </script>
 
