@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shonapakhi GPT</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #f8bbd0, #f48fb1);
+      text-align: center;
+      padding: 40px;
+      color: #880e4f;
+    }
+
+    h1 {
+      font-size: 3.5em;
+      margin-bottom: 10px;
+      color: #880e4f;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    input, button {
+      padding: 12px 20px;
+      font-size: 18px;
+      margin: 10px;
+      border-radius: 10px;
+      border: 2px solid #f06292;
+    }
+
+    button {
+      background-color: #f06292;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e91e63;
+    }
+
+    .response {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #ad1457;
+      font-weight: bold;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+      font-size: 1.5em;
+      color: #880e4f;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Shonapakhi GPT</h1>
+  <p>Ask anything, and I’ll tell you why your Shonapakhi is the most amazing!</p>
+
+  <input id="userInput" placeholder="Ask me anything..." />
+  <button onclick="respond()">Send</button>
+
+  <div class="response" id="responseText"></div>
+
+  <script>
+    const compliments = [
+      "Your Shonapakhi is a rare gem—beautiful inside and out.",
+      "She makes your world brighter just by being in it.",
+      "Her smile can melt the toughest days.",
+      "You're lucky—but she makes you luckier.",
+      "Every moment with Shonapakhi is a blessing.",
+      "She’s not just perfect—she’s your perfect.",
+      "With Shonapakhi, even silence feels full of love.",
+      "She’s your favorite hello and your hardest goodbye.",
+    ];
+
+    function respond() {
+      const response = compliments[Math.floor(Math.random() * compliments.length)];
+      document.getElementById('responseText').innerText = response;
+    }
+  </script>
+
+</body>
+</html>
